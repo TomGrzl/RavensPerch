@@ -1,18 +1,23 @@
 import './App.css';
 import AppHeader from "./components/AppHeader";
-import {Switch, Route} from "react-router-dom";
+import {Switch, Route, BrowserRouter as Router} from "react-router-dom";
 import LearningRessources from "./pages/LearningRessources";
 import styled from "styled-components/macro";
+import GlobalStyle from "./components/GlobalStyle";
 
 function App() {
     return (
         <PageLayout>
-            <AppHeader/>
-            <Switch>
-                <Route path="/learningresources">
-                    <LearningRessources/>
-                </Route>
-            </Switch>
+            <Router>
+                <GlobalStyle>
+                    <AppHeader/>
+                    <Switch>
+                        <Route path="/learningresources">
+                            <LearningRessources/>
+                        </Route>
+                    </Switch>
+                </GlobalStyle>
+            </Router>
         </PageLayout>
     );
 }
