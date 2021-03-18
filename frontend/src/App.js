@@ -7,7 +7,7 @@ import GlobalStyle from "./components/GlobalStyle";
 
 
 import React, {useState, useEffect, useLayoutEffect} from 'react';
-import Konva from "./pages/Konva";
+
 
 function App() {
 
@@ -20,9 +20,6 @@ function App() {
                 <Switch>
                     <Route exact path="/learningresources">
                         <LearningResources/>
-                    </Route>
-                    <Route exact path="/konva">
-                        <Konva/>
                     </Route>
                 </Switch>
             </Router>
