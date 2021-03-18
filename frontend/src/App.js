@@ -4,14 +4,10 @@ import {Switch, Route, BrowserRouter as Router} from "react-router-dom";
 import LearningResources from "./pages/LearningResources";
 import styled from "styled-components/macro";
 import GlobalStyle from "./components/GlobalStyle";
-
-
-import React, {useState, useEffect, useLayoutEffect} from 'react';
-
+import React from 'react';
 
 function App() {
-
-
+    
     return (
         <PageLayout>
             <AppHeader/>
@@ -20,7 +16,7 @@ function App() {
                 <Switch>
                     <Route exact path="/learningresources">
                         <LearningResources/>
-                    </Route>
+                    </Route>n
                 </Switch>
             </Router>
         </PageLayout>
