@@ -1,6 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {render} from 'react-dom';
-import {Stage, Layer, Star, Text, Rect, Shape, Circle} from 'react-konva';
+import {Stage, Layer, Rect, Circle} from 'react-konva';
 
 export default function Konva() {
     const [rects, setRects] = useState([]);
@@ -40,21 +39,11 @@ export default function Konva() {
         setCircleId(circleId + 1);
     }
 
-
-    const showLog = () => {
-        console.log(rects)
-        console.log(circles)
-
-    }
-
-
     return (
         <>
             <button onClick={addRect}>Add Rect</button>
             <button onClick={addCircle}>Add Circle</button>
-            <button onClick={showLog}>Show Log</button>
             <Stage width={window.innerWidth} height={window.innerHeight} background={'#fff'}>
-
                 <Layer>
                     {rects.map((rect) => (
                         <Rect

@@ -4,14 +4,10 @@ import {Switch, Route, BrowserRouter as Router} from "react-router-dom";
 import LearningResources from "./pages/LearningResources";
 import styled from "styled-components/macro";
 import GlobalStyle from "./components/GlobalStyle";
-
-
-import React, {useState, useEffect, useLayoutEffect} from 'react';
 import Konva from "./pages/Konva";
 
 function App() {
-
-
+    
     return (
         <PageLayout>
             <AppHeader/>
