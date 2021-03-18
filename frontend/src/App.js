@@ -1,22 +1,30 @@
 import './App.css';
 import AppHeader from "./components/AppHeader";
 import {Switch, Route, BrowserRouter as Router} from "react-router-dom";
-import LearningRessources from "./pages/LearningRessources";
+import LearningResources from "./pages/LearningResources";
 import styled from "styled-components/macro";
 import GlobalStyle from "./components/GlobalStyle";
 
+
+import React, {useState, useEffect, useLayoutEffect} from 'react';
+import Konva from "./pages/Konva";
+
 function App() {
+
+
     return (
         <PageLayout>
+            <AppHeader/>
             <Router>
-                <GlobalStyle>
-                    <AppHeader/>
-                    <Switch>
-                        <Route path="/learningresources">
-                            <LearningRessources/>
-                        </Route>
-                    </Switch>
-                </GlobalStyle>
+                <GlobalStyle/>
+                <Switch>
+                    <Route exact path="/learningresources">
+                        <LearningResources/>
+                    </Route>
+                    <Route exact path="/konva">
+                        <Konva/>
+                    </Route>
+                </Switch>
             </Router>
         </PageLayout>
     );
