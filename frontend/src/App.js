@@ -5,6 +5,8 @@ import LearningResources from "./pages/LearningResources";
 import styled from "styled-components/macro";
 import GlobalStyle from "./components/GlobalStyle";
 import Konva from "./pages/Konva";
+import React from 'react';
+
 
 function App() {
     
