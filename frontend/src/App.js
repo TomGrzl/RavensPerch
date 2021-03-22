@@ -4,7 +4,9 @@ import {Switch, Route, BrowserRouter as Router} from "react-router-dom";
 import LearningResources from "./pages/LearningResources";
 import styled from "styled-components/macro";
 import GlobalStyle from "./components/GlobalStyle";
+import Konva from "./pages/Konva";
 import React from 'react';
+
 
 function App() {
     
@@ -16,7 +18,10 @@ function App() {
                 <Switch>
                     <Route exact path="/learningresources">
                         <LearningResources/>
-                    </Route>n
+                    </Route>
+                    <Route exact path="/konva">
+                        <Konva/>
+                    </Route>
                 </Switch>
             </Router>
         </PageLayout>

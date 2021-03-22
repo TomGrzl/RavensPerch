@@ -1,7 +1,7 @@
 export default function LearningResources() {
 
     return (
-        <div/>
+        <h1>Learning Resources</h1>
     )
 
 }
