@@ -25,7 +25,6 @@ public class KonvaService {
 
 
     public Optional<KonvaStateDto> getKonvaState(String konvaState) {
-        System.out.print(konvaDB.findById(konvaState).get());
         return konvaDB.findById(konvaState);
     }
 }
