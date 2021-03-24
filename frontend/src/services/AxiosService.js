@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const KonvaUrl = '/konva'
+const konvaUrl = '/konva'
 
 export const postState = (konvaState) => {
     axios.post(KonvaUrl + '/updateState', konvaState).then(response => response.data)

@@ -16,7 +16,7 @@ export default function useKonvaObjects() {
             width: 30,
             height: 30,
             fill: '#C9E1F2',
-            stroke: '#000',
+            stroke: '#000'git,
             strokeWidth: 1,
             shadowBlur: 5,
             shadowColor: '#000',
