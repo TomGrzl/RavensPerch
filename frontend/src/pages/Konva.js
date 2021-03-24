@@ -1,158 +1,79 @@
-import React, {useState} from 'react';
-import {Stage, Layer, Rect, Circle} from 'react-konva';
+import React, {useState, useEffect} from 'react';
+import {Stage, Layer, Rect, Circle, Image} from 'react-konva';
+import useKonvaObjects from "../components/useKonvaObjects";
+import {getState, postState} from "../services/AxiosService";
+
 
 export default function Konva() {
-    const [rects, setRects] = useState([]);
-    const [circles, setCircles] = useState([])
-    const [rectId, setRectId] = useState(1)
-    const [circleId, setCircleId] = useState(1)
 
-    const addRect = () => {
-        setRects([...rects, {
-            id: rectId.toString(),
-            x: 60,
-            y: 60,
-            width: 30,
-            height: 30,
-            fill: '#C9E1F2',
-            stroke: '#000',
-            strokeWidth: 1,
-            shadowBlur: 10,
-        }
-        ])
-        setRectId(rectId + 1);
-    }
+    const isSelected = false;
+    const [
+        rects,
+        circles,
+        rectId,
+        circleId,
+        addRect,
+        addCircle,
+        removeObject,
+        clearBoard,
+        saveState,
+        loadState,
+        log,
+        setRectDeletionIdOnMouseDown,
+        setCircleDeletionIdOnMouseDown,
+        markSelectedCircleOnMouseUp,
+        markSelectedRectOnMouseUp,
+        setCircleCoordinatesOnDragEnd,
+        setRectCoordinatesOnDragEnd
+    ] = useKonvaObjects()
 
-    const addCircle = () => {
-        setCircles([...circles, {
-            id: circleId.toString(),
-            x: 60,
-            y: 60,
-            radius: 15,
-            fill: '#C9E1F2',
-            stroke: '#000',
-            strokeWidth: 1,
-            shadowBlur: 10
-        }
-        ])
-        setCircleId(circleId + 1);
-    }
-
-
-    const handleDragStart = (e) => {
-        const id = e.target.id();
-        const x = e.target.x();
-        const y = e.target.y();
-
-        console.log(
-            'ID: ' + id + '  ' +
-            'X: ' + x + '  ' +
-            'Y: ' + y)
-    }
-
-    const setRectCoordinatesOnDragEnd = (e) => {
-        const id = e.target.id();
-        const x = e.target.x();
-        const y = e.target.y();
-
-        setRects(
-            rects.map((rect) => {
-                if (rect.id === id) {
-                    return {
-                        ...rect,
-                        x: x,
-                        y: y,
-                        isDragging: false,
-                        width: 30,
-                        height: 30,
-                        shadowBlur: 10,
-                        fill: '#C9E1F2', shadowOffsetX: 5, shadowOffsetY: 5
-                    }
-                } else {
-                    return {...rect}
-                }
-            }))
-
-        console.log(
-            'ID: ' + id + '  ' +
-            'X: ' + x + '  ' +
-            'Y: ' + y)
-    }
-
-    const setCircleCoordinatesOnDragEnd = (e) => {
-        const id = e.target.id();
-        const x = e.target.x();
-        const y = e.target.y();
-
-        setCircles(
-            circles.map((circle) => {
-                if (circle.id === id) {
-                    return {
-                        ...circle,
-                        x: x,
-                        y: y,
-                    }
-                } else {
-                    return {...circle}
-                }
-            }))
-        
-        console.log(
-            'ID: ' + id + '  ' +
-            'X: ' + x + '  ' +
-            'Y: ' + y)
-    }
-
-    const logRects = () => {
-        console.log(rects)
-    }
-
-    const logCircles = () => {
-        console.log(circles)
-    }
 
     return (
-        <>
+        <div>
             <button onClick={addRect}>Add Rect</button>
             <button onClick={addCircle}>Add Circle</button>
-            <button onClick={logRects}>Log Rects</button>
-            <button onClick={logCircles}>Log Circles</button>
-            <Stage width={window.innerWidth} height={window.innerHeight} background={'#fff'}>
+            <button onClick={removeObject}>Remove</button>
+            <button onClick={clearBoard}>Clear Board</button>
+            <button onClick={saveState}>Save State</button>
+            <button onClick={loadState}>Load State</button>
+            <button onClick={log}>Log</button>
+            <Stage width={window.innerHeight * 1.514} height={window.innerHeight}>
                 <Layer>
                     {rects.map((rect) => (
                         <Rect
+                            {...rect}
                             key={rect.id}
-                            id={rect.id}
-                            x={rect.x}
-                            y={rect.y}
-                            width={rect.width}
-                            height={rect.height}
-                            fill={rect.fill}
-                            stroke={rect.stroke}
-                            strokeWidth={rect.strokeWidth}
-                            shadowBlur={rect.shadowBlur}
+                            shadowBlur={rect.isSelected ? 15 : 5}
+                            shadowColor={rect.isSelected ? '#fff' : '#000'}
+                            shadowForStrokeEnabled={false}
                             draggable
-                            isDragging={false}
-                            onDragStart={handleDragStart}
+                            onMouseDown={setRectDeletionIdOnMouseDown}
+                            onMouseUp={markSelectedRectOnMouseUp}
+                            onDragStart={markSelectedRectOnMouseUp}
                             onDragEnd={setRectCoordinatesOnDragEnd}
+                            onTouchStart={setRectDeletionIdOnMouseDown}
+                            onTouchEnd={markSelectedRectOnMouseUp}
                         />))}
                     {circles.map((circle) => (
                         <Circle
+                            {...circle}
                             key={circle.id}
-                            id={circle.id}
-                            x={circle.x}
-                            y={circle.y}
-                            radius={circle.radius}
-                            fill={circle.fill}
-                            stroke={circle.stroke}
-                            strokeWidth={circle.strokeWidth}
-                            shadowBlur={circle.shadowBlur}
+                            shadowBlur={circle.isSelected ? 15 : 5}
+                            shadowColor={circle.isSelected ? '#fff' : '#000'}
                             draggable
-                            onDragStart={handleDragStart}
+                            onMouseDown={setCircleDeletionIdOnMouseDown}
+                            onMouseUp={markSelectedCircleOnMouseUp}
+                            onDragStart={markSelectedCircleOnMouseUp}
                             onDragEnd={setCircleCoordinatesOnDragEnd}
+                            onTouchStart={setCircleDeletionIdOnMouseDown}
+                            onTouchEnd={markSelectedCircleOnMouseUp}
                         />))}
                 </Layer>
             </Stage>
-        </>
+        </div>
     )
 }
+
+
+
+
