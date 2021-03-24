@@ -10,7 +10,7 @@ import java.util.Optional;
 @Service
 public class KonvaService {
 
-    KonvaDB konvaDB;
+    private final KonvaDB konvaDB;
 
     @Autowired
     private KonvaService(KonvaDB konvaDB) {
