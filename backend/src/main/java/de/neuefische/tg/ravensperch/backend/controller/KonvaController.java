@@ -10,10 +10,7 @@ import org.springframework.web.server.ResponseStatusException;
 @RestController
 @RequestMapping("/konva")
 public class KonvaController {
-
-    //Ggf. Arrays einzeln ins Backfield schicken und State zusammenbauen um problem mit name und id zu umgehen
-    //ggf. Objekte in einem State zusammenfassen und mit eindeutiger id versehen (bspw. circle1, rect1, ...)
-
+    
     private KonvaService konvaService;
 
     @Autowired
