@@ -20,7 +20,6 @@ public class KonvaController {
 
     @PostMapping("/updateState")
     public KonvaStateDto updateKonvaState(@RequestBody KonvaStateDto konvaState) {
-        System.out.print(konvaState);
         return konvaService.updateKonvaState(konvaState)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "unable to update state"));
     }
