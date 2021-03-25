@@ -4,12 +4,12 @@ import {postState, getState} from "../services/AxiosService";
 export default function useKonvaObjects() {
     const [rects, setRects] = useState([])
     const [circles, setCircles] = useState([])
-    const [rectId, setRectId] = useState(1)
-    const [circleId, setCircleId] = useState(1)
+    const [rectIndex, setRectIndex] = useState(1)
+    const [circleIndex, setCircleIndex] = useState(1)
 
     const addRect = () => {
         setRects([...rects, {
-            id: "r" + rectId.toString(),
+            id: 'r' + rectIndex.toString(),
             x: 60,
             y: 60,
             width: 30,
@@ -22,12 +22,12 @@ export default function useKonvaObjects() {
             isSelected: false
         }
         ])
-        setRectId(rectId + 1);
+        setRectIndex(rectIndex + 1);
     }
 
     const addCircle = () => {
         setCircles([...circles, {
-            id: circleId.toString(),
+            id: 'c' + circleIndex.toString(),
             x: 60,
             y: 60,
             radius: 15,
@@ -39,31 +39,37 @@ export default function useKonvaObjects() {
             isSelected: false
         }
         ])
-        setCircleId(circleId + 1);
+        setCircleIndex(circleIndex + 1);
     }
 
-    const setRectDeletionIdOnMouseDown = (e) => {
-        if (!e.target.isSelected) {
-            setRects(
-                rects.map((rect) => {
-                    return {
-                        ...rect,
-                        isSelected: false
-                    }
-                }))
+    const unmarkSelectedObject = () => {
+        setRects(
+            rects.map((rect) => {
+                return {
+                    ...rect,
+                    isSelected: false
+                }
+            }))
 
-            setCircles(
-                circles.map((circle) => {
-                    return {
-                        ...circle,
-                        isSelected: false
-                    }
-                }))
+        setCircles(
+            circles.map((circle) => {
+                return {
+                    ...circle,
+                    isSelected: false
+                }
+            }))
+    }
+
+    const handleMouseDown = (e) => {
+        const id = e.target.id()
+
+        if (id === "") {
+            unmarkSelectedObject()
         }
-
+        unmarkSelectedObject()
     }
 
-    const markSelectedRectOnMouseUp = (e) => {
+    const markSelectedObjectOnMouseUp = (e) => {
         setRects(
             rects.map((rect) => {
                 if (rect.id === e.target.id()) {
@@ -76,48 +82,7 @@ export default function useKonvaObjects() {
                 }
 
             }))
-    }
 
-    const setRectCoordinatesOnDragEnd = (e) => {
-        const id = e.target.id();
-        const newX = e.target.x();
-        const newY = e.target.y();
-
-        setRects(
-            rects.map((rect) => {
-                if (rect.name === id) {
-                    return {
-                        ...rect,
-                        x: newX,
-                        y: newY,
-                    }
-                } else {
-                    return rect
-                }
-            }))
-    }
-
-    const setCircleDeletionIdOnMouseDown = () => {
-        setCircles(
-            circles.map((circle) => {
-                return {
-                    ...circle,
-                    isSelected: false
-                }
-
-            }))
-
-        setRects(
-            rects.map((rect) => {
-                return {
-                    ...rect,
-                    isSelected: false
-                }
-
-            }))
-    }
-
-    const markSelectedCircleOnMouseUp = (e) => {
         setCircles(
             circles.map((circle) => {
                 if (circle.id === e.target.id()) {
@@ -131,10 +96,23 @@ export default function useKonvaObjects() {
             }))
     }
 
-    const setCircleCoordinatesOnDragEnd = (e) => {
+    const setCoordinatesOnDragEnd = (e) => {
         const id = e.target.id();
         const newX = e.target.x();
         const newY = e.target.y();
+
+        setRects(
+            rects.map((rect) => {
+                if (rect.id === id) {
+                    return {
+                        ...rect,
+                        x: newX,
+                        y: newY,
+                    }
+                } else {
+                    return rect
+                }
+            }))
 
         setCircles(
             circles.map((circle) => {
@@ -158,13 +136,13 @@ export default function useKonvaObjects() {
 
     const clearBoard = () => {
         setRects([])
-        setRectId(0)
+        setRectIndex(0)
         setCircles([])
-        setCircleId(0)
+        setCircleIndex(0)
     }
 
     const saveState = () => {
-        postState({rects, rectId, circles, circleId})
+        postState({rects, rectId: rectIndex, circles, circleId: circleIndex})
     }
 
     const loadState = () => {
@@ -172,37 +150,24 @@ export default function useKonvaObjects() {
             .then((response) =>
                 (
                     setRects(response.data.rects),
-                        setRectId(response.data.rectId),
+                        setRectIndex(response.data.rectId),
                         setCircles(response.data.circles),
-                        setCircleId(response.data.circleId)
+                        setCircleIndex(response.data.circleId)
                 ))
 
     }
 
-    const log = () => {
-        console.log(rects)
-        console.log(circles)
-        console.log(circleId)
-        console.log(rectId)
-    }
-
-    return [
+    return {
         rects,
         circles,
-        rectId,
-        circleId,
         addRect,
         addCircle,
         removeObject,
         clearBoard,
-        saveState,
         loadState,
-        log,
-        setRectDeletionIdOnMouseDown,
-        setCircleDeletionIdOnMouseDown,
-        markSelectedCircleOnMouseUp,
-        markSelectedRectOnMouseUp,
-        setCircleCoordinatesOnDragEnd,
-        setRectCoordinatesOnDragEnd
-    ]
+        saveState,
+        handleMouseDown,
+        markSelectedObjectOnMouseUp,
+        setCoordinatesOnDragEnd
+    }
 }
