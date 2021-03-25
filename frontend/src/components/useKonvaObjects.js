@@ -1,6 +1,5 @@
 import {useState} from "react";
 import {postState, getState} from "../services/AxiosService";
-import axios from "axios";
 
 export default function useKonvaObjects() {
     const [rects, setRects] = useState([])
@@ -10,13 +9,13 @@ export default function useKonvaObjects() {
 
     const addRect = () => {
         setRects([...rects, {
-            id: rectId.toString(),
+            id: "r" + rectId.toString(),
             x: 60,
             y: 60,
             width: 30,
             height: 30,
             fill: '#C9E1F2',
-            stroke: '#000'git,
+            stroke: '#000',
             strokeWidth: 1,
             shadowBlur: 5,
             shadowColor: '#000',

@@ -13,7 +13,7 @@ public class KonvaService {
     private final KonvaDB konvaDB;
 
     @Autowired
-    private KonvaService(KonvaDB konvaDB) {
+    public KonvaService(KonvaDB konvaDB) {
         this.konvaDB = konvaDB;
     }
 
