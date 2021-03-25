@@ -51,11 +51,11 @@ export default function Konva() {
                             shadowBlur={circle.isSelected ? 15 : 5}
                             shadowColor={circle.isSelected ? '#fff' : '#000'}
                             draggable
-                            onMouseDown={unmarkSelectedObjectOnMouseDown}
+                            onMouseDown={handleMouseDown}
                             onMouseUp={markSelectedObjectOnMouseUp}
                             onDragStart={markSelectedObjectOnMouseUp}
                             onDragEnd={setCoordinatesOnDragEnd}
-                            onTouchStart={unmarkSelectedObjectOnMouseDown}
+                            onTouchStart={handleMouseDown}
                             onTouchEnd={markSelectedObjectOnMouseUp}
                         />))}
                 </Layer>
