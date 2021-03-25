@@ -8,13 +8,13 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.server.ResponseStatusException;
 
 @RestController
-@RequestMapping("/konva")
+@RequestMapping("konva")
 public class KonvaController {
-    
+
     private KonvaService konvaService;
 
     @Autowired
-    private KonvaController(KonvaService konvaService) {
+    public KonvaController(KonvaService konvaService) {
         this.konvaService = konvaService;
     }
 
