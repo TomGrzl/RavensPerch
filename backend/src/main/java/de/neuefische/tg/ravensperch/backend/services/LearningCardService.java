@@ -14,18 +14,18 @@ public class LearningCardService {
     private final static double HEIGHT = 30;
     private final static double WIDTH = 30;
     private final static double RADIUS = 15;
-    private final static String FILL = "";
-    private final static String STROKE = "";
+    private final static String FILL = "#C9E1F2";
+    private final static String STROKE = "#000";
     private final static double STROKE_WIDTH = 1;
     private final static double SHADOW_BLUR = 5;
-    private final static String SHADOW_COLOR = "";
+    private final static String SHADOW_COLOR = "#000";
     private final static int SPLITS = 10;
 
 
     public KonvaStateDto generateOffenseState() {
 
         return KonvaStateDto.builder()
-                .id("konvaState")
+                .id("Offense")
                 .rects(generateOffenseObjects())
                 .rectIndex(0)
                 .circles(generateDefenseObjects())
@@ -51,7 +51,7 @@ public class LearningCardService {
 
                 RectDto.builder()
                         .id("2")
-                        .x(INIT_COORDINATES + WIDTH + SPLITS)
+                        .x((INIT_COORDINATES + WIDTH + SPLITS))
                         .y(INIT_COORDINATES)
                         .height(HEIGHT)
                         .width(WIDTH)
@@ -64,7 +64,7 @@ public class LearningCardService {
 
                 RectDto.builder()
                         .id("3")
-                        .x(INIT_COORDINATES + (WIDTH * 2) + (SPLITS * 2))
+                        .x((INIT_COORDINATES + (WIDTH * 2) + (SPLITS * 2)))
                         .y(INIT_COORDINATES)
                         .height(HEIGHT)
                         .width(WIDTH)
@@ -77,7 +77,7 @@ public class LearningCardService {
 
                 RectDto.builder()
                         .id("4")
-                        .x(INIT_COORDINATES - WIDTH - SPLITS)
+                        .x((INIT_COORDINATES - WIDTH - SPLITS))
                         .y(INIT_COORDINATES)
                         .height(HEIGHT)
                         .width(WIDTH)
@@ -90,7 +90,7 @@ public class LearningCardService {
 
                 RectDto.builder()
                         .id("5")
-                        .x(INIT_COORDINATES - (WIDTH * 2) - (SPLITS * 2))
+                        .x((INIT_COORDINATES - (WIDTH * 2) - (SPLITS * 2)))
                         .y(INIT_COORDINATES)
                         .height(HEIGHT)
                         .width(WIDTH)
