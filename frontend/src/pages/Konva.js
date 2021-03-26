@@ -18,6 +18,7 @@ export default function Konva() {
         clearBoard,
         saveState,
         loadState,
+        loadOffense,
         log,
         setRectDeletionIdOnMouseDown,
         setCircleDeletionIdOnMouseDown,
@@ -37,6 +38,7 @@ export default function Konva() {
             <button onClick={saveState}>Save State</button>
             <button onClick={loadState}>Load State</button>
             <button onClick={log}>Log</button>
+            <button onClick={loadOffense}>Load Offense</button>
             <Stage width={window.innerHeight * 1.514} height={window.innerHeight}>
                 <Layer>
                     {rects.map((rect) => (

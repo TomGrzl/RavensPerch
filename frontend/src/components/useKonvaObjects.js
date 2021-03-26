@@ -1,5 +1,5 @@
 import {useState} from "react";
-import {postState, getState} from "../services/AxiosService";
+import {postState, getState, getOffense} from "../services/AxiosService";
 
 export default function useKonvaObjects() {
     const [rects, setRects] = useState([])
@@ -179,6 +179,17 @@ export default function useKonvaObjects() {
 
     }
 
+    const loadOffense = () => {
+        getOffense()
+            .then((response) =>
+                (
+                    setRects(response.data.rects),
+                        setRectId(response.data.rectId),
+                        setCircles(response.data.circles),
+                        setCircleId(response.data.circleId)
+                ))
+    }
+
     const log = () => {
         console.log(rects)
         console.log(circles)
@@ -197,6 +208,7 @@ export default function useKonvaObjects() {
         clearBoard,
         saveState,
         loadState,
+        loadOffense,
         log,
         setRectDeletionIdOnMouseDown,
         setCircleDeletionIdOnMouseDown,
