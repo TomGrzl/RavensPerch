@@ -1,5 +1,4 @@
 import {useState} from "react";
-import {postState, getState} from "../services/AxiosService";
 import {postState, getState, getOffense} from "../services/AxiosService";
 
 export default function useKonvaObjects() {
@@ -163,10 +162,15 @@ export default function useKonvaObjects() {
             .then((response) =>
                 (
                     setRects(response.data.rects),
-                        setRectId(response.data.rectId),
+                        setRectIndex(response.data.rectId),
                         setCircles(response.data.circles),
-                        setCircleId(response.data.circleId)
+                        setCircleIndex(response.data.circleId)
                 ))
+    }
+
+    const buttun = (e) => {
+        const id = e.target.id()
+        console.log(id)
     }
 
     return {
@@ -181,6 +185,7 @@ export default function useKonvaObjects() {
         saveState,
         handleMouseDown,
         markSelectedObjectOnMouseUp,
-        setCoordinatesOnDragEnd
+        setCoordinatesOnDragEnd,
+        buttun
     }
 }

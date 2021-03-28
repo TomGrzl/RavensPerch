@@ -3,18 +3,6 @@ import useKonvaObjects from "../components/useKonvaObjects";
 
 export default function Konva() {
 
-    const [
-        rects,
-        circles,
-        addRect,
-        addCircle,
-        removeObject,
-        clearBoard,
-        saveState,
-        loadState,
-        loadOffense,
-        log
-    ] = useKonvaObjects()
     const
         {
             rects,
@@ -25,9 +13,11 @@ export default function Konva() {
             clearBoard,
             saveState,
             loadState,
+            loadOffense,
             handleMouseDown,
             markSelectedObjectOnMouseUp,
-            setCoordinatesOnDragEnd
+            setCoordinatesOnDragEnd,
+            buttun
         } = useKonvaObjects()
 
 
@@ -39,11 +29,9 @@ export default function Konva() {
             <button onClick={clearBoard}>Clear Board</button>
             <button onClick={saveState}>Save State</button>
             <button onClick={loadState}>Load State</button>
-            <button onClick={log}>Log</button>
             <button onClick={loadOffense}>Load Offense</button>
+            <button id={1} onClick={buttun}>Buttun</button>
             <Stage width={window.innerHeight * 1.514} height={window.innerHeight}>
-                <Layer>
-            <Stage width={window.innerHeight * 1.514} height={window.innerHeight} onMouseDown={handleMouseDown}>
                 <Layer onMouseDown={handleMouseDown}>
                     {rects.map((rect) => (
                         <Rect
