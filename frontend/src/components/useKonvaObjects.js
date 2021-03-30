@@ -3,37 +3,35 @@ import {postState, getState, getOffense} from "../services/AxiosService";
 
 export default function useKonvaObjects() {
     const [rects, setRects] = useState([])
-    const [circles, setCircles] = useState([])
+    const [oLine, setOLine] = useState([])
+    const [qb, setQb] = useState([])
+    const [rb, setRb] = useState([])
     const [rectIndex, setRectIndex] = useState(1)
     const [circleIndex, setCircleIndex] = useState(1)
+
 
     const addRect = () => {
         setRects([...rects, {
             id: 'r' + rectIndex.toString(),
             x: 60,
             y: 60,
-            width: 30,
-            height: 30,
             fill: '#C9E1F2',
-            stroke: '#000',
-            strokeWidth: 1,
             shadowBlur: 5,
             shadowColor: '#000',
-            isSelected: false
+            isSelected: false,
+            text: 'NT'
         }
         ])
         setRectIndex(rectIndex + 1);
     }
 
     const addCircle = () => {
-        setCircles([...circles, {
+        setOLine([...oLine, {
             id: 'c' + circleIndex.toString(),
             x: 60,
             y: 60,
-            radius: 15,
+            radius: 2,
             fill: '#C9E1F2',
-            stroke: '#000',
-            strokeWidth: 1,
             shadowBlur: 5,
             shadowColor: '#000',
             isSelected: false
@@ -51,8 +49,8 @@ export default function useKonvaObjects() {
                 }
             }))
 
-        setCircles(
-            circles.map((circle) => {
+        setOLine(
+            oLine.map((circle) => {
                 return {
                     ...circle,
                     isSelected: false
@@ -61,12 +59,13 @@ export default function useKonvaObjects() {
     }
 
     const handleMouseDown = (e) => {
-        const id = e.target.id()
+        const isSelected = e.target.getAttr('isSelected')
 
-        if (id === "") {
+        if (isSelected) {
+            return
+        } else {
             unmarkSelectedObject()
         }
-        unmarkSelectedObject()
     }
 
     const markSelectedObjectOnMouseUp = (e) => {
@@ -80,11 +79,10 @@ export default function useKonvaObjects() {
                 } else {
                     return rect
                 }
-
             }))
 
-        setCircles(
-            circles.map((circle) => {
+        setOLine(
+            oLine.map((circle) => {
                 if (circle.id === e.target.id()) {
                     return {
                         ...circle,
@@ -114,8 +112,8 @@ export default function useKonvaObjects() {
                 }
             }))
 
-        setCircles(
-            circles.map((circle) => {
+        setOLine(
+            oLine.map((circle) => {
                 if (circle.id === id) {
 
                     return {
@@ -131,18 +129,18 @@ export default function useKonvaObjects() {
 
     const removeObject = () => {
         setRects(rects.filter(rect => !rect.isSelected))
-        setCircles(circles.filter(circle => !circle.isSelected))
+        setOLine(oLine.filter(circle => !circle.isSelected))
     }
 
     const clearBoard = () => {
         setRects([])
         setRectIndex(0)
-        setCircles([])
+        setOLine([])
         setCircleIndex(0)
     }
 
     const saveState = () => {
-        postState({rects, rectId: rectIndex, circles, circleId: circleIndex})
+        postState({rects, rectId: rectIndex, circles: oLine, circleId: circleIndex})
     }
 
     const loadState = () => {
@@ -151,7 +149,7 @@ export default function useKonvaObjects() {
                 (
                     setRects(response.data.rects),
                         setRectIndex(response.data.rectId),
-                        setCircles(response.data.circles),
+                        setOLine(response.data.circles),
                         setCircleIndex(response.data.circleId)
                 ))
 
@@ -161,21 +159,17 @@ export default function useKonvaObjects() {
         getOffense()
             .then((response) =>
                 (
-                    setRects(response.data.rects),
-                        setRectIndex(response.data.rectId),
-                        setCircles(response.data.circles),
-                        setCircleIndex(response.data.circleId)
+                    setOLine(response.data.circles),
+                        setQb(response.data.qb),
+                        setRb(response.data.rb)
                 ))
-    }
-
-    const buttun = (e) => {
-        const id = e.target.id()
-        console.log(id)
     }
 
     return {
         rects,
-        circles,
+        oLine,
+        qb,
+        rb,
         addRect,
         addCircle,
         removeObject,
@@ -185,7 +179,6 @@ export default function useKonvaObjects() {
         saveState,
         handleMouseDown,
         markSelectedObjectOnMouseUp,
-        setCoordinatesOnDragEnd,
-        buttun
+        setCoordinatesOnDragEnd
     }
 }
