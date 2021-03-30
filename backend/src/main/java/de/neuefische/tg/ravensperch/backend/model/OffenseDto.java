@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class CircleDto {
+public class OffenseDto {
 
     private String id;
     private double x;

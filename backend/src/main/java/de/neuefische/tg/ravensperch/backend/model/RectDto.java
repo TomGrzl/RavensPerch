@@ -22,5 +22,6 @@ public class RectDto {
     private double shadowBlur;
     private String shadowColor;
     private boolean isSelected;
+    private String role;
 
 }

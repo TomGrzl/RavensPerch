@@ -1,6 +1,6 @@
 package de.neuefische.tg.ravensperch.backend.services;
 
-import de.neuefische.tg.ravensperch.backend.model.CircleDto;
+import de.neuefische.tg.ravensperch.backend.model.OffenseDto;
 import de.neuefische.tg.ravensperch.backend.model.KonvaStateDto;
 import de.neuefische.tg.ravensperch.backend.model.RectDto;
 import org.springframework.stereotype.Service;
@@ -10,7 +10,8 @@ import java.util.List;
 @Service
 public class LearningCardService {
 
-    private final static double INIT_COORDINATES = 200;
+    private final static double INIT_X = 510;
+    private final static double INIT_Y = 163;
     private final static double HEIGHT = 30;
     private final static double WIDTH = 30;
     private final static double RADIUS = 15;
@@ -26,88 +27,78 @@ public class LearningCardService {
 
         return KonvaStateDto.builder()
                 .id("Offense")
-                .rects(generateOffenseObjects())
+                .rects(generateDefenseObjects())
                 .rectIndex(0)
-                .circles(generateDefenseObjects())
+                .oline(generateOffenseLine())
                 .circleIndex(0)
+                .qb(generateQb())
+                .rb(generateRb())
                 .build();
     }
 
-    private List<RectDto> generateOffenseObjects() {
+    private List<OffenseDto> generateOffenseLine() {
 
         return List.of(
-                RectDto.builder()
+                OffenseDto.builder()
                         .id("1")
-                        .x(INIT_COORDINATES)
-                        .y(INIT_COORDINATES)
-                        .height(HEIGHT)
-                        .width(WIDTH)
-                        .fill(FILL)
-                        .stroke(STROKE)
-                        .strokeWidth(STROKE_WIDTH)
-                        .shadowColor(SHADOW_COLOR)
-                        .shadowBlur(SHADOW_BLUR)
+                        .x(0)
+                        .y(INIT_Y)
+                        .role("C")
                         .build(),
 
-                RectDto.builder()
+                OffenseDto.builder()
                         .id("2")
-                        .x((INIT_COORDINATES + WIDTH + SPLITS))
-                        .y(INIT_COORDINATES)
-                        .height(HEIGHT)
-                        .width(WIDTH)
-                        .fill(FILL)
-                        .stroke(STROKE)
-                        .strokeWidth(STROKE_WIDTH)
-                        .shadowColor(SHADOW_COLOR)
-                        .shadowBlur(SHADOW_BLUR)
+                        .x(1)
+                        .y(INIT_Y)
+                        .role("G")
                         .build(),
 
-                RectDto.builder()
+                OffenseDto.builder()
                         .id("3")
-                        .x((INIT_COORDINATES + (WIDTH * 2) + (SPLITS * 2)))
-                        .y(INIT_COORDINATES)
-                        .height(HEIGHT)
-                        .width(WIDTH)
-                        .fill(FILL)
-                        .stroke(STROKE)
-                        .strokeWidth(STROKE_WIDTH)
-                        .shadowColor(SHADOW_COLOR)
-                        .shadowBlur(SHADOW_BLUR)
+                        .x(2)
+                        .y(INIT_Y)
+                        .role("T")
                         .build(),
 
-                RectDto.builder()
+                OffenseDto.builder()
                         .id("4")
-                        .x((INIT_COORDINATES - WIDTH - SPLITS))
-                        .y(INIT_COORDINATES)
-                        .height(HEIGHT)
-                        .width(WIDTH)
-                        .fill(FILL)
-                        .stroke(STROKE)
-                        .strokeWidth(STROKE_WIDTH)
-                        .shadowColor(SHADOW_COLOR)
-                        .shadowBlur(SHADOW_BLUR)
+                        .x(-1)
+                        .y(INIT_Y)
+                        .role("G")
                         .build(),
 
-                RectDto.builder()
+                OffenseDto.builder()
                         .id("5")
-                        .x((INIT_COORDINATES - (WIDTH * 2) - (SPLITS * 2)))
-                        .y(INIT_COORDINATES)
-                        .height(HEIGHT)
-                        .width(WIDTH)
-                        .fill(FILL)
-                        .stroke(STROKE)
-                        .strokeWidth(STROKE_WIDTH)
-                        .shadowColor(SHADOW_COLOR)
-                        .shadowBlur(SHADOW_BLUR)
+                        .x(-2)
+                        .y(INIT_Y)
+                        .role("T")
                         .build()
 
 
         );
     }
 
-    private List<CircleDto> generateDefenseObjects() {
+    private List<OffenseDto> generateQb() {
+        return List.of(OffenseDto.builder()
+                .id("1")
+                .x(1)
+                .y(1)
+                .role("QB")
+                .build());
+    }
 
-        return List.of(CircleDto.builder().build());
+    private List<OffenseDto> generateRb() {
+        return List.of(OffenseDto.builder()
+                .id("1")
+                .x(1)
+                .y(1)
+                .role("RB")
+                .build());
+    }
+
+    private List<RectDto> generateDefenseObjects() {
+
+        return List.of();
     }
 
 }

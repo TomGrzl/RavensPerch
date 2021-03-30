@@ -1,7 +1,7 @@
 package de.neuefische.tg.ravensperch.backend.controller;
 
 import de.neuefische.tg.ravensperch.backend.db.KonvaDB;
-import de.neuefische.tg.ravensperch.backend.model.CircleDto;
+import de.neuefische.tg.ravensperch.backend.model.OffenseDto;
 import de.neuefische.tg.ravensperch.backend.model.KonvaStateDto;
 import de.neuefische.tg.ravensperch.backend.model.RectDto;
 import org.junit.jupiter.api.BeforeEach;
@@ -98,30 +98,20 @@ class KonvaControllerTest {
                         .isSelected(false)
                         .build());
 
-        List<CircleDto> circleDtoList = List.of(
-                CircleDto.builder()
+        List<OffenseDto> circleDtoList = List.of(
+                OffenseDto.builder()
                         .id("c1")
                         .x(60)
                         .y(60)
-                        .radius(15)
-                        .fill("#C9E1F2")
-                        .stroke("#000")
-                        .strokeWidth(1)
-                        .shadowBlur(5)
-                        .shadowColor("000")
+                        .role("C")
                         .isSelected(false)
                         .build(),
 
-                CircleDto.builder()
+                OffenseDto.builder()
                         .id("c2")
                         .x(60)
                         .y(60)
-                        .radius(15)
-                        .fill("#C9E1F2")
-                        .stroke("#000")
-                        .strokeWidth(1)
-                        .shadowBlur(5)
-                        .shadowColor("000")
+                        .role("T")
                         .isSelected(false)
                         .build());
 
@@ -132,7 +122,7 @@ class KonvaControllerTest {
                 .id("konvaState")
                 .rects(rectDtoList)
                 .rectIndex(rectIndex)
-                .circles(circleDtoList)
+                .oline(circleDtoList)
                 .circleIndex(circleIndex)
                 .build();
     }

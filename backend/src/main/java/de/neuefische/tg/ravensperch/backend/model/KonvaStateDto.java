@@ -22,9 +22,14 @@ public class KonvaStateDto {
     private List<RectDto> rects;
     @JsonProperty("rectId")
     private int rectIndex;
-    private List<CircleDto> circles;
+    private List<OffenseDto> oline;
     @JsonProperty("circleId")
     private int circleIndex;
+    private List<OffenseDto> qb;
+    private List<OffenseDto> rb;
+    //private List<OffenseDto> wr;
+    //private List<OffenseDto> slot;
+    //private List<OffenseDto> te;
 
-   
+
 }
