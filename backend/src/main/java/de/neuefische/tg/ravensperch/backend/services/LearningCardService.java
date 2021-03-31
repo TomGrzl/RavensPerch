@@ -2,37 +2,26 @@ package de.neuefische.tg.ravensperch.backend.services;
 
 import de.neuefische.tg.ravensperch.backend.model.OffenseDto;
 import de.neuefische.tg.ravensperch.backend.model.KonvaStateDto;
-import de.neuefische.tg.ravensperch.backend.model.RectDto;
+import de.neuefische.tg.ravensperch.backend.model.DefenseDto;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
 public class LearningCardService {
-
-    private final static double INIT_X = 510;
-    private final static double INIT_Y = 163;
-    private final static double HEIGHT = 30;
-    private final static double WIDTH = 30;
-    private final static double RADIUS = 15;
-    private final static String FILL = "#C9E1F2";
-    private final static String STROKE = "#000";
-    private final static double STROKE_WIDTH = 1;
-    private final static double SHADOW_BLUR = 5;
-    private final static String SHADOW_COLOR = "#000";
-    private final static int SPLITS = 10;
-
-
+    
     public KonvaStateDto generateOffenseState() {
 
         return KonvaStateDto.builder()
                 .id("Offense")
-                .rects(generateDefenseObjects())
+                .defense(generateDefenseObjects())
                 .rectIndex(0)
                 .oline(generateOffenseLine())
                 .circleIndex(0)
                 .qb(generateQb())
                 .rb(generateRb())
+                .wr(generateWr())
+                .sr(generateSr())
                 .build();
     }
 
@@ -40,37 +29,32 @@ public class LearningCardService {
 
         return List.of(
                 OffenseDto.builder()
-                        .id("1")
+                        .id("o1")
                         .x(0)
-                        .y(INIT_Y)
                         .role("C")
                         .build(),
 
                 OffenseDto.builder()
-                        .id("2")
+                        .id("o2")
                         .x(1)
-                        .y(INIT_Y)
                         .role("G")
                         .build(),
 
                 OffenseDto.builder()
-                        .id("3")
+                        .id("o3")
                         .x(2)
-                        .y(INIT_Y)
                         .role("T")
                         .build(),
 
                 OffenseDto.builder()
-                        .id("4")
+                        .id("o4")
                         .x(-1)
-                        .y(INIT_Y)
                         .role("G")
                         .build(),
 
                 OffenseDto.builder()
-                        .id("5")
+                        .id("o5")
                         .x(-2)
-                        .y(INIT_Y)
                         .role("T")
                         .build()
 
@@ -80,7 +64,7 @@ public class LearningCardService {
 
     private List<OffenseDto> generateQb() {
         return List.of(OffenseDto.builder()
-                .id("1")
+                .id("q1")
                 .x(1)
                 .y(1)
                 .role("QB")
@@ -89,16 +73,140 @@ public class LearningCardService {
 
     private List<OffenseDto> generateRb() {
         return List.of(OffenseDto.builder()
-                .id("1")
+                .id("r1")
                 .x(1)
                 .y(1)
                 .role("RB")
                 .build());
     }
 
-    private List<RectDto> generateDefenseObjects() {
+    private List<OffenseDto> generateWr() {
+        return List.of(OffenseDto.builder()
+                        .id("w1")
+                        .x(1)
+                        .y(1)
+                        .role("WR")
+                        .build(),
 
-        return List.of();
+                OffenseDto.builder()
+                        .id("w2")
+                        .x(-1)
+                        .y(2)
+                        .role("WR")
+                        .build());
+    }
+
+    private List<OffenseDto> generateSr() {
+        return List.of(OffenseDto.builder()
+                        .id("s1")
+                        .x(1)
+                        .y(1)
+                        .role("SR")
+                        .build(),
+
+                OffenseDto.builder()
+                        .id("s2")
+                        .x(-1)
+                        .y(1)
+                        .role("SR")
+                        .build());
+    }
+
+    private List<DefenseDto> generateDefenseObjects() {
+
+        return List.of(
+                DefenseDto.builder()
+                        .id("d1")
+                        .x(1)
+                        .y(0)
+                        .role("L")
+                        .build(),
+
+                DefenseDto.builder()
+                        .id("d2")
+                        .x(2)
+                        .y(0)
+                        .role("P")
+                        .build(),
+
+                DefenseDto.builder()
+                        .id("d3")
+                        .x(3)
+                        .y(0)
+                        .role("DT")
+                        .build(),
+
+                DefenseDto.builder()
+                        .id("d4")
+                        .x(4)
+                        .y(0)
+                        .role("NT")
+                        .build(),
+
+                DefenseDto.builder()
+                        .id("d5")
+                        .x(5)
+                        .y(0)
+                        .role("S")
+                        .build(),
+
+                DefenseDto.builder()
+                        .id("d6")
+                        .x(6)
+                        .y(0)
+                        .role("M")
+                        .build(),
+
+                DefenseDto.builder()
+                        .id("d7")
+                        .x(7)
+                        .y(0)
+                        .role("W")
+                        .build(),
+
+                DefenseDto.builder()
+                        .id("d8")
+                        .x(1)
+                        .y(1)
+                        .role("R")
+                        .build(),
+
+                DefenseDto.builder()
+                        .id("d9")
+                        .x(2)
+                        .y(1)
+                        .role("N")
+                        .build(),
+
+                DefenseDto.builder()
+                        .id("d10")
+                        .x(3)
+                        .y(1)
+                        .role("CB")
+                        .build(),
+
+                DefenseDto.builder()
+                        .id("d11")
+                        .x(4)
+                        .y(1)
+                        .role("CB")
+                        .build(),
+
+                DefenseDto.builder()
+                        .id("d12")
+                        .x(5)
+                        .y(1)
+                        .role("FS")
+                        .build(),
+
+                DefenseDto.builder()
+                        .id("d13")
+                        .x(6)
+                        .y(1)
+                        .role("$$")
+                        .build()
+
+        );
     }
 
 }

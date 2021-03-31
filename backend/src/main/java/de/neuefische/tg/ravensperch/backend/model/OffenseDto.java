@@ -15,7 +15,6 @@ public class OffenseDto {
     private String id;
     private double x;
     private double y;
-    private boolean isSelected;
     private String role;
 
 

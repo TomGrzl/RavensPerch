@@ -18,7 +18,7 @@ public class LearningCardController {
         this.learningCardService = learningCardService;
     }
 
-    @GetMapping("getOffense")
+    @GetMapping("getLearningCard")
     public KonvaStateDto getOffense() {
 
         return learningCardService.generateOffenseState();

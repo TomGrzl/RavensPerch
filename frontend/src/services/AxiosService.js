@@ -11,12 +11,12 @@ export const getState = () => {
     return axios.get(konvaUrl + '/KonvaState')
 }
 
-export const getOffense = () => {
-    return axios.get(learningUrl + '/getOffense')
+export const getLearningCard = () => {
+    return axios.get(learningUrl + '/getLearningCard')
 }
 
 export default {
     postState,
     getState,
-    getOffense
+    getLearningCard
 }

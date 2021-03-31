@@ -9,19 +9,11 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class RectDto {
+public class DefenseDto {
 
     private String id;
     private double x;
     private double y;
-    private double width;
-    private double height;
-    private String fill;
-    private String stroke;
-    private double strokeWidth;
-    private double shadowBlur;
-    private String shadowColor;
-    private boolean isSelected;
     private String role;
 
 }
