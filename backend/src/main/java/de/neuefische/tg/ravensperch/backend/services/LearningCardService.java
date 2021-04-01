@@ -9,7 +9,7 @@ import java.util.List;
 
 @Service
 public class LearningCardService {
-    
+
     public KonvaStateDto generateOffenseState() {
 
         return KonvaStateDto.builder()
@@ -119,14 +119,14 @@ public class LearningCardService {
                         .id("d1")
                         .x(1)
                         .y(0)
-                        .role("L")
+                        .role("DE")
                         .build(),
 
                 DefenseDto.builder()
                         .id("d2")
                         .x(2)
                         .y(0)
-                        .role("P")
+                        .role("DE")
                         .build(),
 
                 DefenseDto.builder()

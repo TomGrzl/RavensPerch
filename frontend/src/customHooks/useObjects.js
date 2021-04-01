@@ -1,7 +1,7 @@
 import {useState} from "react";
 import {getState, postState} from "../services/AxiosService";
 
-export default function useKonvaObjects() {
+export default function useObjects() {
     const [rects, setRects] = useState([])
     const [circles, setCircles] = useState([])
     const [rectIndex, setRectIndex] = useState(1)

@@ -22,14 +22,9 @@ public class KonvaService {
         KonvaStateDto response = konvaDB.save(konvaState);
         return Optional.of(response);
     }
-
-
+    
     public Optional<KonvaStateDto> getKonvaState(String konvaState) {
         return konvaDB.findById(konvaState);
     }
 
-    public KonvaStateDto generateOffense() {
-
-        return KonvaStateDto.builder().build();
-    }
 }

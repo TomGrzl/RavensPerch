@@ -1,5 +1,5 @@
 import {useState} from "react";
-import {postState, getState, getLearningCard} from "../services/AxiosService";
+import {getLearningCard} from "../services/AxiosService";
 
 export default function useLearningCard() {
     const [defense, setDefense] = useState([])
