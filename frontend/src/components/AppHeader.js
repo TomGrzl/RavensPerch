@@ -3,9 +3,12 @@ import styled from 'styled-components/macro'
 export default function AppHeader() {
 
     return (
-        <Header>
-            <h1>RavensPerch</h1>
-        </Header>)
+        <FixedWrapper>
+            <Header>
+                <h1>RavensPerch</h1>
+            </Header>
+        </FixedWrapper>
+    )
 }
 
 const Header = styled.header`
@@ -18,10 +21,15 @@ const Header = styled.header`
     margin: 0px;
     text-align: center;
     font-size: 1.6em;
-    font-family: 'Times New Roman';
+    font-family: 'Roboto', Thin 100;
     color: #C9E1F2;
     text-align: left;
   }
 
+`
+
+const FixedWrapper = styled.div`
+position: fixed
+grid-row: grid-row-start
 `
 
