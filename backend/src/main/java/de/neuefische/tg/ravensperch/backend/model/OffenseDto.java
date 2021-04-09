@@ -5,22 +5,17 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class RectDto {
+public class OffenseDto {
 
     private String id;
     private double x;
     private double y;
-    private double width;
-    private double height;
-    private String fill;
-    private String stroke;
-    private double strokeWidth;
-    private double shadowBlur;
-    private String shadowColor;
-    private boolean isSelected;
+    private String role;
+
 
 }

@@ -19,12 +19,17 @@ public class KonvaStateDto {
 
     @Id
     private String id = "KonvaState";
-    private List<RectDto> rects;
+    private List<DefenseDto> defense;
     @JsonProperty("rectId")
     private int rectIndex;
-    private List<CircleDto> circles;
+    private List<OffenseDto> oline;
     @JsonProperty("circleId")
     private int circleIndex;
+    private List<OffenseDto> qb;
+    private List<OffenseDto> rb;
+    private List<OffenseDto> wr;
+    private List<OffenseDto> sr;
+    //private List<OffenseDto> te;
 
-   
+
 }

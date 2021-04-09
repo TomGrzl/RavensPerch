@@ -1,9 +1,9 @@
 package de.neuefische.tg.ravensperch.backend.controller;
 
 import de.neuefische.tg.ravensperch.backend.db.KonvaDB;
-import de.neuefische.tg.ravensperch.backend.model.CircleDto;
+import de.neuefische.tg.ravensperch.backend.model.OffenseDto;
 import de.neuefische.tg.ravensperch.backend.model.KonvaStateDto;
-import de.neuefische.tg.ravensperch.backend.model.RectDto;
+import de.neuefische.tg.ravensperch.backend.model.DefenseDto;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -70,59 +70,31 @@ class KonvaControllerTest {
 
 
     private KonvaStateDto generateKonvaState() {
-        List<RectDto> rectDtoList = List.of(
-                RectDto.builder()
+        List<DefenseDto> defenseDtoList = List.of(
+                DefenseDto.builder()
                         .id("r1")
                         .x(60)
                         .y(60)
-                        .width(30)
-                        .height(30)
-                        .fill("#C9E1F2")
-                        .stroke("#000")
-                        .strokeWidth(1)
-                        .shadowBlur(5)
-                        .shadowColor("#000")
-                        .isSelected(false)
                         .build(),
-                RectDto.builder()
+                DefenseDto.builder()
                         .id("r2")
                         .x(60)
                         .y(60)
-                        .width(30)
-                        .height(30)
-                        .fill("#C9E1F2")
-                        .stroke("#000")
-                        .strokeWidth(1)
-                        .shadowBlur(5)
-                        .shadowColor("#000")
-                        .isSelected(false)
                         .build());
 
-        List<CircleDto> circleDtoList = List.of(
-                CircleDto.builder()
+        List<OffenseDto> circleDtoList = List.of(
+                OffenseDto.builder()
                         .id("c1")
                         .x(60)
                         .y(60)
-                        .radius(15)
-                        .fill("#C9E1F2")
-                        .stroke("#000")
-                        .strokeWidth(1)
-                        .shadowBlur(5)
-                        .shadowColor("000")
-                        .isSelected(false)
+                        .role("C")
                         .build(),
 
-                CircleDto.builder()
+                OffenseDto.builder()
                         .id("c2")
                         .x(60)
                         .y(60)
-                        .radius(15)
-                        .fill("#C9E1F2")
-                        .stroke("#000")
-                        .strokeWidth(1)
-                        .shadowBlur(5)
-                        .shadowColor("000")
-                        .isSelected(false)
+                        .role("T")
                         .build());
 
         int rectIndex = 3;
@@ -130,9 +102,9 @@ class KonvaControllerTest {
 
         return KonvaStateDto.builder()
                 .id("konvaState")
-                .rects(rectDtoList)
+                .defense(defenseDtoList)
                 .rectIndex(rectIndex)
-                .circles(circleDtoList)
+                .oline(circleDtoList)
                 .circleIndex(circleIndex)
                 .build();
     }

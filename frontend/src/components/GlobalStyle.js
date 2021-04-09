@@ -1,4 +1,4 @@
-import { createGlobalStyle } from 'styled-components'
+import {createGlobalStyle} from 'styled-components'
 
 export default createGlobalStyle`
   * {
@@ -7,7 +7,7 @@ export default createGlobalStyle`
   html, body {
     margin: 0;
     font-size: 112.5%;
-    font-family: sans-serif;
+    font-family: 'Roboto', sans-serif;
     background: #454A4D;
     font-color: #C9E1F2;
   }`
