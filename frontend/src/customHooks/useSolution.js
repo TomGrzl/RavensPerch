@@ -1,13 +1,17 @@
 import {useState} from "react";
-import {getLearningCard} from "../services/AxiosService";
+import {getSolution} from "../services/AxiosService";
 
 export default function useLearningCard() {
     const [solutionDefense, setSolutionDefense] = useState([])
     const [solutionOline, setSolutionOline] = useState([])
     const [solutionQb, setSolutionQb] = useState([])
-    const [SolutionRb, setSolutionRb] = useState([])
+    const [solutionRb, setSolutionRb] = useState([])
     const [solutionWr, setSolutionWr] = useState([])
     const [solutionSr, setSolutionSr] = useState([])
+    const [solutionDline, setSolutionDline] = useState([])
+    const [solutionLinebacker, setSolutionLinebacker] = useState([])
+    const [solutionCornerbacks, setSolutionCornerbacks] = useState([])
+    const [solutionSafeties, setSolutionSafeties] = useState([])
     const [isSolutionLoaded, setIsSolutionLoaded] = useState(false)
 
     const unmarkSelectedObject = () => {
@@ -98,7 +102,7 @@ export default function useLearningCard() {
     }
 
     const loadSolution = () => {
-        getLearningCard()
+        getSolution()
             .then((response) =>
                 (
                     setSolutionDefense(response.data.defense),
@@ -106,7 +110,11 @@ export default function useLearningCard() {
                         setSolutionQb(response.data.qb),
                         setSolutionRb(response.data.rb),
                         setSolutionWr(response.data.wr),
-                        setSolutionSr(response.data.sr)
+                        setSolutionSr(response.data.sr),
+                        setSolutionDline(response.data.dline),
+                        setSolutionLinebacker(response.data.lb),
+                        setSolutionCornerbacks(response.data.cb),
+                        setSolutionSafeties(response.data.safety)
                 ))
     }
 
@@ -114,9 +122,13 @@ export default function useLearningCard() {
         solutionDefense,
         solutionOline,
         solutionQb,
-        SolutionRb,
+        solutionRb,
         solutionWr,
         solutionSr,
+        solutionDline,
+        solutionLinebacker,
+        solutionCornerbacks,
+        solutionSafeties,
         isSolutionLoaded,
         setIsSolutionLoaded,
         loadSolution,

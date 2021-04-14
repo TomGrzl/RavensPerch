@@ -39,53 +39,76 @@ export default function positionUtil() {
     const defenseOffsetX = rectDiagonal
     const defenseOffsetY = rectDiagonal
 
-    const alignOffsetX = rectDiagonal / 2
-    const alignOffsetY = oneYardY * 5
+    const alignOffsetX = (rectDiagonal / 2)
+    const alignOffsetY = oneYardY * 4.4
 
     const neutralZone = oneYardY / 3.27 // approx. 11 inches
     const lineOfScrimmage = initY + rectDiagonal / 2 + neutralZone
     const zeroTechX = initX
-    const shadeX = initX + alignOffsetX
-    const oneTechX = zeroTechX + alignOffsetX + olineSplits
-    const twoTechX = oneTechX + alignOffsetX
-    const threeTechX = twoTechX + alignOffsetX
-    const fourInsideTechX = threeTechX + olineSplits
-    const fourTechX = fourInsideTechX + alignOffsetX
-    const fiveTechX = fourTechX + alignOffsetX
-    const sevenTechX = fiveTechX + olineSplits
-    const sixTechX = sevenTechX + alignOffsetX
-    const nineTechX = sixTechX + alignOffsetX
+    const shadeX = initX - alignOffsetX
+    const shadeStrX = initX + alignOffsetX
+    const oneTechX = zeroTechX - alignOffsetX - olineSplits
+    const oneTechStrX = zeroTechX + alignOffsetX + olineSplits
+    const twoTechX = oneTechX - alignOffsetX
+    const twoTechStrX = oneTechStrX + alignOffsetX
+    const threeTechX = twoTechX - alignOffsetX
+    const threeTechStrX = twoTechStrX + alignOffsetX
+    const fourInsideTechX = threeTechX - olineSplits
+    const fourInsideTechStrX = threeTechStrX + olineSplits
+    const fourTechX = fourInsideTechX - alignOffsetX
+    const fourTechStrX = fourInsideTechStrX + alignOffsetX
+    const fiveTechX = fourTechX - alignOffsetX
+    const fiveTechStrX = fourTechStrX + alignOffsetX
+    const sevenTechX = fiveTechX - olineSplits
+    const sevenTechStrX = fiveTechStrX + olineSplits
+    const sixTechX = sevenTechX - alignOffsetX
+    const sixTechStrX = sevenTechStrX + alignOffsetX
+    const nineTechX = sixTechX - alignOffsetX
+    const nineTechStrX = sixTechStrX + alignOffsetX
 
 
     const tenTechX = oneTechX
-    const tenTechY = lineOfScrimmage + alignOffsetY
+    const tenTechStrX = oneTechStrX
+    const tenTechY = (lineOfScrimmage - neutralZone) + alignOffsetY
+    const shadeY = (lineOfScrimmage - neutralZone) + alignOffsetY
     const twentyTechX = twoTechX
-    const twentyTechY = lineOfScrimmage + alignOffsetY
+    const twentyTechStrX = twoTechStrX
+    const twentyTechY = (lineOfScrimmage - neutralZone) + alignOffsetY
     const thirtyTechX = threeTechX
-    const thirtyTechY = lineOfScrimmage + alignOffsetY
-    const fourtyInsideTechX = fourTechX
-    const fourtyInsideTechY = lineOfScrimmage + alignOffsetY
+    const thirtyTechStrX = threeTechStrX
+    const thirtyTechY = (lineOfScrimmage - neutralZone) + alignOffsetY
+    const fourtyInsideTechX = fourInsideTechX
+    const fourtyInsideTechStrX = fourInsideTechStrX
+    const fourtyInsideTechY = (lineOfScrimmage - neutralZone) + alignOffsetY
     const fourtyTechX = fourTechX
-    const fourtyTechY = lineOfScrimmage + alignOffsetY
+    const fourtyTechStrX = fourTechStrX
+    const fourtyTechY = (lineOfScrimmage - neutralZone) + alignOffsetY
     const fiftyTechX = fiveTechX
-    const fiftyTechY = lineOfScrimmage + alignOffsetY
+    const fiftyTechStrX = fiveTechStrX
+    const fiftyTechY = (lineOfScrimmage - neutralZone) + alignOffsetY
     const seventyTechX = sevenTechX
+    const seventyTechStrX = sevenTechStrX
     const seventyTechY = sevenTechX
     const sixtyTechX = sixTechX
+    const sixtyTechStrX = sixTechStrX
     const sixtyTechY = sixTechX
     const ninetyTechX = nineTechX
-    const ninetyTechY = lineOfScrimmage + alignOffsetY
+    const ninetyTechStrX = nineTechStrX
+    const ninetyTechY = (lineOfScrimmage - neutralZone) + alignOffsetY
 
-    const cbInsideLeverageX = wrOffset + alignOffsetX
-    const cbOutsideLeverageX = wrOffset - alignOffsetX
-    const cbDepthY = oneYardY
+    const cbInsideLeverageX = initX + wrOffset + alignOffsetX
+    const cbInsideLeverageStrX = initX - wrOffset - alignOffsetX
+    const cbOutsideLeverageX = initX + wrOffset + alignOffsetX
+    const cbOutsideLeverageStrX = initX - wrOffset - alignOffsetX
+    const cbDepthY = (lineOfScrimmage - neutralZone) + oneYardY * 4
 
-    const safetyHashmarksX = initX + oneTechX * 6.166667
+    const safetyHashmarksX = initX + (oneYardX * 6.9)
+    const safetyHashmarksStrX = initX - (oneYardX * 6.9)
     const safetyMidfieldX = initX
-    const safetyDeepY = oneYardY * 12
+    const safetyDeepY = (lineOfScrimmage - neutralZone) + oneYardY * 12
     const safetyUnderneathY = oneYardY * 7
 
-    const fontSize = 10
+    const fontSize = rectDiagonal / 2.5
 
     return {
         rect:
@@ -108,7 +131,7 @@ export default function positionUtil() {
 
         quarterback:
             {
-                offset: qbGunOffsetY
+                offsetY: qbGunOffsetY
             },
 
         runningBack:
@@ -119,7 +142,7 @@ export default function positionUtil() {
 
         wideReceiver:
             {
-                offset: wrOffset
+                offsetX: wrOffset
             },
 
         slotReceiver:
@@ -133,7 +156,8 @@ export default function positionUtil() {
                 x: initDefenseX,
                 y: initDefenseY,
                 offsetX: defenseOffsetX,
-                offsetY: defenseOffsetY
+                offsetY: defenseOffsetY,
+                initX: initX,
             },
 
         fontSize,
@@ -143,37 +167,79 @@ export default function positionUtil() {
                 height: fieldRelativeHeight,
                 width: fieldRelativeWidth
             },
+        dlinePos:
+            {
+                zeroTech: zeroTechX,
+                shade: shadeX,
+                shadeStr: shadeStrX,
+                oneTech: oneTechX,
+                oneTechStr: oneTechStrX,
+                twoTech: twoTechX,
+                twoTechStr: twoTechStrX,
+                threeTech: threeTechX,
+                threeTechStr: threeTechStrX,
+                fourInsideTech: fourInsideTechX,
+                fourInsideTechStr: fourInsideTechStrX,
+                fourTech: fourInsideTechX,
+                fourTechStr: fourInsideTechStrX,
+                fiveTech: fiveTechX,
+                fiveTechStr: fiveTechStrX,
+                sevenTech: sevenTechX,
+                sevenTechStr: sevenTechStrX,
+                sixTech: sixTechX,
+                sixTechStr: sixTechStrX,
+                nineTech: nineTechX,
+                nineTechStr: nineTechStrX,
+                los: lineOfScrimmage
+
+
+            },
         linebackerPos:
             {
                 tenTechX: tenTechX,
+                tenTechStrX: tenTechStrX,
                 tenTechY: tenTechY,
+                shadeX: shadeX,
+                shadeStrX: shadeStrX,
+                shadeY: shadeY,
                 twentyTechX: twentyTechX,
+                twentyTechStrX: twentyTechStrX,
                 twentyTechY: twentyTechY,
                 thirtyTechX: thirtyTechX,
+                thirtyTechStrX: thirtyTechStrX,
                 thirtyTechY: thirtyTechY,
                 fourtyInsideTechX: fourtyInsideTechX,
+                fourtyInsideTechStrX: fourtyInsideTechStrX,
                 fourtyInsideTechY: fourtyInsideTechY,
                 fourtyTechX: fourtyTechX,
+                fourtyTechStrX: fourtyTechStrX,
                 fourtyTechY: fourtyTechY,
                 fiftyTechX: fiftyTechX,
+                fiftyTechStrX: fiftyTechStrX,
                 fiftyTechY: fiftyTechY,
                 seventyTechX: seventyTechX,
+                seventyTechStrX: seventyTechStrX,
                 seventyTechY: seventyTechY,
                 sixtyTechX: sixtyTechX,
+                sixtyTechStrX: sixtyTechStrX,
                 sixtyTechY: sixtyTechY,
                 ninetyTechX: ninetyTechX,
+                ninetyTechStrX: ninetyTechStrX,
                 ninetyTechY: ninetyTechY
 
             },
         cornerbackPos:
             {
                 outsideLeverageX: cbOutsideLeverageX,
+                outsideLeverageStrX: cbOutsideLeverageStrX,
                 insideLeverageX: cbInsideLeverageX,
+                insideLeverageStrX: cbInsideLeverageStrX,
                 depthY: cbDepthY
             },
-        safety:
+        safetyPos:
             {
                 alignOnHashmarkX: safetyHashmarksX,
+                alignOnHashmarkStrX: safetyHashmarksStrX,
                 alignMidfieldX: safetyMidfieldX,
                 alignDeepY: safetyDeepY,
                 alignUnderneathY: safetyUnderneathY

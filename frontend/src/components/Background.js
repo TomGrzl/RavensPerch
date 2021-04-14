@@ -9,8 +9,8 @@ export default function Background() {
 
     return <Image width={backgroundDimensions.width}
                   height={backgroundDimensions.height} image={image}
-                  shadowBlur={10}
+                  shadowBlur={0}
                   shadowColor={'#000'}
-                  opacity={0.8}
+                  opacity={0.9}
     />
 }

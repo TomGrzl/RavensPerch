@@ -8,6 +8,8 @@ export default createGlobalStyle`
     margin: 0;
     font-size: 112.5%;
     font-family: 'Roboto', sans-serif;
-    background: #454A4D;
+    background: #aaa;
     font-color: #C9E1F2;
   }`
+
+//#454A4D

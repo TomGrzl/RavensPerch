@@ -1,6 +1,6 @@
 package de.neuefische.tg.ravensperch.backend.services;
 
-import de.neuefische.tg.ravensperch.backend.db.KonvaDB;
+import de.neuefische.tg.ravensperch.backend.db.RavensPerchDb;
 import de.neuefische.tg.ravensperch.backend.model.OffenseDto;
 import de.neuefische.tg.ravensperch.backend.model.KonvaStateDto;
 import de.neuefische.tg.ravensperch.backend.model.DefenseDto;
@@ -16,7 +16,7 @@ import static org.mockito.Mockito.*;
 
 class KonvaServiceTest {
 
-    private final KonvaDB testDb = mock(KonvaDB.class);
+    private final RavensPerchDb testDb = mock(RavensPerchDb.class);
     private final KonvaService testService = new KonvaService(testDb);
 
     @Test
