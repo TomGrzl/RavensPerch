@@ -1,6 +1,7 @@
 package de.neuefische.tg.ravensperch.backend.controller;
 
 import de.neuefische.tg.ravensperch.backend.model.KonvaStateDto;
+import de.neuefische.tg.ravensperch.backend.model.SolutionDto;
 import de.neuefische.tg.ravensperch.backend.services.LearningCardService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,6 +23,12 @@ public class LearningCardController {
     public KonvaStateDto getOffense() {
 
         return learningCardService.generateOffenseState();
+    }
+
+    @GetMapping("getSolution")
+    public SolutionDto getSolution() {
+
+        return learningCardService.generateSolution();
     }
 
 }

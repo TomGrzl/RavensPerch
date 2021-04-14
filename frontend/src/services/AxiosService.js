@@ -15,8 +15,13 @@ export const getLearningCard = () => {
     return axios.get(learningUrl + '/getLearningCard')
 }
 
+export const getSolution = () => {
+    return axios.get(learningUrl + '/getSolution')
+}
+
 export default {
     postState,
     getState,
-    getLearningCard
+    getLearningCard,
+    getSolution
 }

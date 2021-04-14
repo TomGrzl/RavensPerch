@@ -1,6 +1,6 @@
 package de.neuefische.tg.ravensperch.backend.controller;
 
-import de.neuefische.tg.ravensperch.backend.db.KonvaDB;
+import de.neuefische.tg.ravensperch.backend.db.RavensPerchDb;
 import de.neuefische.tg.ravensperch.backend.model.OffenseDto;
 import de.neuefische.tg.ravensperch.backend.model.KonvaStateDto;
 import de.neuefische.tg.ravensperch.backend.model.DefenseDto;
@@ -28,11 +28,11 @@ class KonvaControllerTest {
     private TestRestTemplate testRestTemplate;
 
     @Autowired
-    private KonvaDB konvaDB;
+    private RavensPerchDb ravensPerchDb;
 
     @BeforeEach
     public void setup() {
-        konvaDB.deleteAll();
+        ravensPerchDb.deleteAll();
     }
 
     private String getUrl() {
@@ -51,13 +51,13 @@ class KonvaControllerTest {
         // THEN
         assertThat(response.getStatusCode(), is(HttpStatus.OK));
         assertThat(response.getBody(), is(konvaStateDto));
-        assertTrue(konvaDB.existsById("konvaState"));
+        assertTrue(ravensPerchDb.existsById("konvaState"));
     }
 
     @Test
     public void getKonvaStateTest() {
         // GIVEN
-        konvaDB.save(generateKonvaState());
+        ravensPerchDb.save(generateKonvaState());
 
         // WHEN
         ResponseEntity<KonvaStateDto> response = testRestTemplate.getForEntity(getUrl() + "/konvaState", KonvaStateDto.class);

@@ -1,93 +1,91 @@
-import {Group, Layer, Rect, Stage, Text} from "react-konva";
-import {useState} from "react"
+import {Group, Layer, Stage} from "react-konva";
+import {useEffect} from "react"
 import Background from "./Background";
 import positionUtil from "../util/positionUtil";
-import TaskBoard from "./TaskBoard";
+import useSolution from "../customHooks/useSolution"
+import DLine from "./DLine";
+import Linebacker from "./Linebacker";
+import Cornerbacks from "./Cornerbacks";
+import Safeties from "./Safties";
+import OLine from "./OLine";
+import Quarterback from "./Quarterback";
+import Runningback from "./RunningBack";
+import WideReceiver from "./WideReceiver";
+import SlotReceiver from "./SlotReceiver";
+import SolutionBoard from "./SolutionBoard";
 
 export default function Solution({showSolution}) {
 
-    const [solutionCircles, setSolutionCircles] = useState([])
-    const [solutionRects, setSolutionRects] = useState([])
-    const {rect, backgroundDimensions} = positionUtil()
+    const {
+        solutionOline,
+        solutionQb,
+        solutionRb,
+        solutionWr,
+        solutionSr,
+        solutionDline,
+        solutionLinebacker,
+        solutionCornerbacks,
+        solutionSafeties,
+        isSolutionLoaded,
+        setIsSolutionLoaded,
+        loadSolution
+    } = useSolution()
+
+    const {backgroundDimensions} = positionUtil()
+
+
+    useEffect(() => {
+        if (!isSolutionLoaded) {
+            loadSolution()
+            setIsSolutionLoaded(true)
+        }
+
+    }, [isSolutionLoaded])
 
     if (showSolution) {
         return (
-            <div>
-                <Stage id={'SolutionStage'} width={window.innerWidth}
-                       height={window.innerHeight}>
-                    <Layer x={(window.innerWidth / 2) - (backgroundDimensions.width / 2)}
-                           y={(window.innerHeight - backgroundDimensions.height) / 2}
-                           width={backgroundDimensions.width}
-                           height={backgroundDimensions.height}>
-                        <Background/>
-                        {solutionRects.map((defender) => (
-                            <Group>
-                                <Rect/>
-                                <Text/>
-                            </Group>))}
-                        <Group>
-                            <TaskBoard/>
-                            <Text x={25}
-                                  y={5}
-                                  text={" \n\ - 10 Personal \n\ \n\ - Double Twins"}
-                                  height={125}
-                                  width={225}
-                                  align={'center'}
-                                  fontFamily={'Roboto'}
-                                  fontSize={15}
-                                  verticalAlign={'top'}
-                                  padding={15}
-                                  fill={'#fff'}
-                                  fontSize={13}
-                            />
-                            <Group>
-                                <Group>
-                                    <Rect x={50}
-                                          y={95}
-                                          height={25}
-                                          width={75}
-                                          cornerRadius={3}
-                                          stroke={'#fff'}
-                                          strokeWidth={1}
-                                    />
-                                    <Text text={'Correct'}
-                                          height={25}
-                                          width={75}
-                                          x={50}
-                                          y={95}
-                                          align={'center'}
-                                          verticalAlign={'middle'}
-                                          fill={'#0a0'}
-                                          fontSize={13}
-                                    />
-                                </Group>
-                                <Group>
-                                    <Rect x={150}
-                                          y={95}
-                                          height={25}
-                                          width={75}
-                                          cornerRadius={3}
-                                          stroke={'#fff'}
-                                          strokeWidth={1}
-                                    />
-                                    <Text text={'Wrong'}
-                                          height={25}
-                                          width={75}
-                                          x={150}
-                                          y={95}
-                                          align={'center'}
-                                          verticalAlign={'middle'}
-                                          fill={'#a00'}
-                                          fontSize={13}
-                                    />
-                                </Group>
-                            </Group>
-                        </Group>
-                    </Layer>
-                </Stage>
-            </div>
+            <Stage id={'SolutionStage'} width={window.innerWidth}
+                   height={window.innerHeight}>
+                <Layer x={(window.innerWidth / 2) - (backgroundDimensions.width / 2)}
+                       y={(window.innerHeight - backgroundDimensions.height) / 2}
+                       width={backgroundDimensions.width}
+                       height={backgroundDimensions.height}>
+                    <Background/>
+                    <Group key={'Offense'}>
+                        {solutionOline.map((lineman) => (
+                            <OLine lineman={lineman}/>
+                        ))}
+                        {solutionQb.map((q) => (
+                            <Quarterback q={q}/>
+                        ))}
+                        {solutionRb.map((r) => (
+                            <Runningback r={r}/>
+                        ))}
+                        {solutionWr.map((w) => (
+                            <WideReceiver w={w}/>
+                        ))}
+                        {solutionSr.map((s) => (
+                            <SlotReceiver s={s}/>
+                        ))}
+                    </Group>
+                    {solutionDline.map((liner) =>
+                        <DLine liner={liner}/>
+                    )}
+                    {solutionLinebacker.map((backer) =>
+                        <Linebacker backer={backer}/>
+                    )}
+                    {solutionCornerbacks.map((cb) =>
+                        <Cornerbacks cb={cb}/>
+                    )}
+                    {solutionSafeties.map((safety) =>
+                        <Safeties safety={safety}/>
+                    )}
+                    <SolutionBoard/>
+                </Layer>
+            </Stage>
         )
     }
-    return (
-        <></>)
+    return (<></>)
+
+
 }

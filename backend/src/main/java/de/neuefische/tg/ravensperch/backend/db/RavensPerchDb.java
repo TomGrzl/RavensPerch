@@ -5,7 +5,7 @@ import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface KonvaDB extends PagingAndSortingRepository<KonvaStateDto, String> {
+public interface RavensPerchDb extends PagingAndSortingRepository<KonvaStateDto, String> {
 
 
 }
