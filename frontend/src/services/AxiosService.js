@@ -12,8 +12,6 @@ export const getSolution = () => {
 }
 
 export default {
-    postState,
-    getState,
     getLearningCard,
     getSolution
 }
