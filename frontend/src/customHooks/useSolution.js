@@ -1,5 +1,5 @@
 import {useState} from "react";
-import {getSolution} from "../services/AxiosService";
+import {getLearningCard, getSolution} from "../services/AxiosService";
 
 export default function useLearningCard() {
     const [solutionDefense, setSolutionDefense] = useState([])

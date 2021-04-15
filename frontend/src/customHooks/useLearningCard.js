@@ -101,12 +101,12 @@ export default function useLearningCard() {
         getLearningCard()
             .then((response) =>
                 (
-                    setDefense(response.data.defense),
-                        setOLine(response.data.oline),
-                        setQb(response.data.qb),
-                        setRb(response.data.rb),
-                        setWr(response.data.wr),
-                        setSr(response.data.sr)
+                    setDefense(response.data.draggableDefense),
+                        setOLine(response.data.offenseFormation.oline),
+                        setQb(response.data.offenseFormation.qb),
+                        setRb(response.data.offenseFormation.rb),
+                        setWr(response.data.offenseFormation.wr),
+                        setSr(response.data.offenseFormation.wr)
                 ))
     }
 
