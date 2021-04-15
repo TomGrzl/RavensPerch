@@ -16,6 +16,8 @@ export default function Task({onClickScroll}) {
 
     const {backgroundDimensions} = positionUtil()
 
+    const [windowHeight, setWindowHeight] = useState(window.innerHeight)
+    const [windowWidth, setWindowWidth] = useState(window.innerWidth)
 
     const
         {
@@ -40,18 +42,28 @@ export default function Task({onClickScroll}) {
 
     }, [isLoaded])
 
+    window.onresize = () => {
+        setWindowHeight(window.innerHeight)
+        setWindowWidth(window.innerWidth)
+    }
+
+    const testHandler = (event) => {
+        const Rect = event.target.x()
+        console.log(Rect)
+    }
+
 
     return (
         <Stage id={'Stage'} width={window.innerWidth}
                height={window.innerHeight}
                onMouseDown={handleMouseDown}>
-            <Layer x={(window.innerWidth / 2) - (backgroundDimensions.width / 2)}
-                   y={(window.innerHeight - backgroundDimensions.height) / 2}
+            <Layer x={(windowWidth / 2) - (backgroundDimensions.width / 2)}
+                   y={(windowHeight - backgroundDimensions.height) / 2}
                    width={backgroundDimensions.width}
                    height={backgroundDimensions.height}>
                 <Background/>
                 {defense.map((defender) => (
-                    <DraggableDefense defender={defender}/>))}
+                    <DraggableDefense defender={defender} onClick={testHandler}/>))}
                 <Group key={'Offense'}>
                     {oLine.map((lineman) => (
                         <OLine lineman={lineman}/>

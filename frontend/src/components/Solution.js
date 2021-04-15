@@ -13,8 +13,12 @@ import Runningback from "./RunningBack";
 import WideReceiver from "./WideReceiver";
 import SlotReceiver from "./SlotReceiver";
 import SolutionBoard from "./SolutionBoard";
+import {useState} from "react";
 
 export default function Solution({showSolution}) {
+
+    const [solutionWindowHeight, setSolutionWindowHeight] = useState(window.innerHeight)
+    const [solutionWindowWidth, setSolutionWindowWidth] = useState(window.innerWidth)
 
     const {
         solutionOline,
@@ -41,6 +45,7 @@ export default function Solution({showSolution}) {
         }
 
     }, [isSolutionLoaded])
+
 
     if (showSolution) {
         return (

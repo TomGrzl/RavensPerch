@@ -6,16 +6,17 @@ export default function GroupText({x, y, text}) {
     const {rect, fontSize} = positionUtil()
 
     return (
-        <Text text={text}
-              x={x}
-              y={y}
-              height={rect.rectDiagonal}
-              width={rect.rectDiagonal}
-              align={'center'}
-              verticalAlign={'top'}
-              fontSize={fontSize}
-              fontFamily={'Arial'}
-              fontStyle={'bold'}
+        <Text
+            text={text}
+            x={x}
+            y={y}
+            height={rect.rectDiagonal}
+            width={rect.rectDiagonal}
+            align={'center'}
+            verticalAlign={'top'}
+            fontSize={fontSize}
+            fontFamily={'Arial'}
+            fontStyle={'bold'}
         />
     )
 }
